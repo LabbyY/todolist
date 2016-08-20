@@ -1,5 +1,7 @@
 <div class="main box">
-
+  <% if flash[:notice] %>
+  <p class="box notice"><%= flash[:notice]%></p>
+  <% end %>
   <div class= "box todos">
     <h2 class="box">Todo List</h2>
     <ul>
@@ -10,11 +12,11 @@
         <% else %>
         <%= todo.title %>
         <% end %>
-        <span class="timeinfo"><%= todo.created_at.to_format_s(:db) %></span>
+        <span class="timeinfo"><%= todo.created_at.to_formatted_s(:db) %></span>
         <% if todo.is_finished %>
-        <%= link_to "Undo", todo_path(todo.id, todo:{is_finished: false}), method: :patch %>,
+        <%= link_to "Undo", todo_path(todo.id, todo: {is_finished: false}), method: :patch %>,
         <% else %>
-        <%= link_to "Done", todo_path(todo.id, todo:{is_finished: true}), method: :patch %>,
+        <%= link_to "Done", todo_path(todo.id, todo: {is_finished: true}), method: :patch %>,
         <% end %>
         <%= link_to "Edit", edit_todo_path(todo.id) %>,
         <%= link_to "Delete", todo_path(todo.id), method: :delete %>
@@ -25,6 +27,6 @@
 
   <div class="box post">
     <h2>Add</h2>
-    <%= reder 'todos/form'%>
+    <%= render 'todos/form'%>
   </div>
 </div>
