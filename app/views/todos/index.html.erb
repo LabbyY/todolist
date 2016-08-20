@@ -3,7 +3,7 @@
   <div class= "box todos">
     <h2 class="box">Todo List</h2>
     <ul>
-      <% for @todos.each do |todo| %>
+      <% @todos.each do |todo| %>
       <li>
         <% if todo.is_finished %>
         <del> <%= todo.title %> </del>
@@ -12,12 +12,12 @@
         <% end %>
         <span class="timeinfo"><%= todo.created_at.to_format_s(:db) %></span>
         <% if todo.is_finished %>
-        <%= link_to "Undo", todo_path(todo.id, todo:{is_finished: false}), method :patch %>,
+        <%= link_to "Undo", todo_path(todo.id, todo:{is_finished: false}), method: :patch %>,
         <% else %>
-        <%= link_to "Done", todo_path(todo.id, todo:{is_finished: true}), method :patch %>,
+        <%= link_to "Done", todo_path(todo.id, todo:{is_finished: true}), method: :patch %>,
         <% end %>
         <%= link_to "Edit", edit_todo_path(todo.id) %>,
-        <%= link_to "Delete", todo_path(todo.id), method :delete %>
+        <%= link_to "Delete", todo_path(todo.id), method: :delete %>
       </li>
       <% end %>
     </ul>
